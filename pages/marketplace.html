@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resvaspot | Marketplace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/navbar.css">
+  <link rel="stylesheet" href="../css/pages.css">
+</head>
+<body data-page="marketplace">
+  <div id="navbar-root"></div>
+
+  <main class="page-shell marketplace-page-shell">
+    <section class="container">
+      <div class="marketplace-header-band surface-card">
+        <div class="marketplace-header-copy">
+          <span class="eyebrow">Marketplace</span>
+          <h1>Curated grooming and beauty essentials.</h1>
+          <p>Browse premium product picks for barbering, hairdressing, beauty, and laundry care in a cleaner student-friendly shopping flow.</p>
+        </div>
+
+        <div class="marketplace-toolbar marketplace-toolbar-polished">
+          <div class="marketplace-search">
+            <label for="marketplaceSearch">Search products</label>
+            <input type="text" id="marketplaceSearch" placeholder="Search products or categories">
+          </div>
+          <div class="marketplace-filter">
+            <label for="marketplaceFilter">Category</label>
+            <select id="marketplaceFilter">
+              <option value="all">All Products</option>
+              <option value="hairdressing">Hairdressing</option>
+              <option value="barbering">Barbering</option>
+              <option value="beauty">Beauty</option>
+              <option value="laundry">Laundry</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="marketplace-chip-row">
+        <button class="marketplace-chip active-chip" type="button" data-filter-chip="all">All Products</button>
+        <button class="marketplace-chip" type="button" data-filter-chip="hairdressing">Hairdressing</button>
+        <button class="marketplace-chip" type="button" data-filter-chip="barbering">Barbering</button>
+        <button class="marketplace-chip" type="button" data-filter-chip="beauty">Beauty</button>
+        <button class="marketplace-chip" type="button" data-filter-chip="laundry">Laundry Essentials</button>
+      </div>
+
+      <div class="marketplace-product-grid premium-market-grid" id="marketplaceGrid">
+        <article class="surface-card product-card premium-product-card" data-name="Restorative Botanical Shampoo" data-category="hairdressing">
+          <div class="product-image premium-product-media">
+            <img class="fade-media product-photo" loading="lazy" src="https://images.pexels.com/photos/16749129/pexels-photo-16749129.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="A botanical hair care bottle held against a soft neutral background">
+            <span>Best Seller</span>
+          </div>
+          <div class="product-content">
+            <p class="product-category-label">Hairdressing</p>
+            <h2>Restorative Botanical Shampoo</h2>
+            <p>Botanical cleansing care designed for textured, treated, and everyday campus hair routines.</p>
+            <div class="product-provider">
+              <span>Sold by <strong>Nia Lawson</strong></span>
+            </div>
+            <div class="rating-row">
+              <span class="stars" aria-label="Rated 4.8 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <small>4.8</small>
+            </div>
+            <div class="product-card-footer">
+              <span class="product-price">GH¢ 24.50</span>
+              <a class="button button-sm" data-auth-required="true" href="checkout.html?item=Conditioner&price=24.50">Buy</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="surface-card product-card" data-category="grooming">
+          <div class="product-card-media">
+            <img class="fade-media product-photo" loading="lazy" src="https://images.pexels.com/photos/6429633/pexels-photo-6429633.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="A matte black styling jar on a clean product backdrop">
+            <span class="product-badge">New</span>
+          </div>
+          <div class="product-card-content">
+            <span class="product-category">Barbering Clay</span>
+            <h2>Premium Matte Clay</h2>
+            <p>Flexible texture and hold for precise styling, shape retention, and low-shine finishes.</p>
+            <div class="product-provider">
+              <span>Sold by <strong>Marcus Cole</strong></span>
+            </div>
+            <div class="rating-row">
+              <span class="stars" aria-label="Rated 4.8 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <small>4.8</small>
+            </div>
+          </div>
+          <div class="product-card-footer">
+            <span class="product-price">GH¢ 18.00</span>
+            <a class="button button-sm" data-auth-required="true" href="checkout.html?item=Matte%20Clay&price=18.00">Buy</a>
+          </div>
+        </article>
+
+        <article class="surface-card product-card" data-category="beauty">
+          <div class="product-card-media">
+            <img class="fade-media product-photo" loading="lazy" src="https://images.pexels.com/photos/4841353/pexels-photo-4841353.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="A skincare serum bottle arranged on a minimal surface">
+          </div>
+          <div class="product-card-content">
+            <span class="product-category">Skin Therapy</span>
+            <h2>Hydrating Face Serum</h2>
+            <p>Hydration-focused skincare support for smoother prep and better post-service maintenance.</p>
+            <div class="product-provider">
+              <span>Sold by <strong>Jordan Stone</strong></span>
+            </div>
+            <div class="rating-row">
+              <span class="stars" aria-label="Rated 4.9 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <small>4.9</small>
+            </div>
+          </div>
+          <div class="product-card-footer">
+            <span class="product-price">GH¢ 32.00</span>
+            <a class="button button-sm" data-auth-required="true" href="checkout.html?item=Face%20Serum&price=32.00">Buy</a>
+          </div>
+        </article>
+
+        <article class="surface-card product-card" data-category="laundry">
+          <div class="product-card-media">
+            <img class="fade-media product-photo" loading="lazy" src="https://images.pexels.com/photos/7789141/pexels-photo-7789141.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Clean folded laundry arranged in a woven basket">
+          </div>
+          <div class="product-card-content">
+            <span class="product-category">Laundry Care</span>
+            <h2>Wool Dryer Balls</h2>
+            <p>Reusable fabric companions for softer loads, faster drying, and gentler dorm laundry cycles.</p>
+            <div class="product-provider">
+              <span>Sold by <strong>CleanJoy Laundry</strong></span>
+            </div>
+            <div class="rating-row">
+              <span class="stars" aria-label="Rated 4.7 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <small>4.7</small>
+            </div>
+          </div>
+          <div class="product-card-footer">
+            <span class="product-price">GH¢ 12.00</span>
+            <a class="button button-sm" data-auth-required="true" href="checkout.html?item=Dryer%20Balls&price=12.00">Buy</a>
+          </div>
+        </article>
+      </div>
+
+      <p class="marketplace-empty" id="marketplaceEmpty" hidden>No products match your current search.</p>
+
+      <div class="marketplace-pagination">
+        <button class="page-dot" type="button" aria-label="Previous page">&#8249;</button>
+        <button class="page-dot active-page" type="button">1</button>
+        <button class="page-dot" type="button">2</button>
+        <button class="page-dot" type="button">3</button>
+        <button class="page-dot" type="button" aria-label="Next page">&#8250;</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="../js/auth-core.js"></script>
+  <script src="../js/media-library.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/marketplace.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const searchQuery = urlParams.get("search");
+      if (searchQuery) {
+        const searchInput = document.querySelector("#marketplaceSearch");
+        if (searchInput) {
+          searchInput.value = searchQuery;
+          // Trigger the search logic from marketplace.js if it exists
+          const event = new Event("input", { bubbles: true });
+          searchInput.dispatchEvent(event);
+        }
+      }
+    });
+  </script>
+</body>
+</html>

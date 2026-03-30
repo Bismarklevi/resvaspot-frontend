@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resvaspot | Calendar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/navbar.css">
+  <link rel="stylesheet" href="../css/pages.css">
+</head>
+<body data-page="calendar">
+  <div id="navbar-root"></div>
+
+  <main class="page-shell">
+    <section class="container calendar-page-shell">
+      <div class="calendar-page-heading">
+        <div class="page-intro calendar-intro">
+          <span class="eyebrow" id="calendarPageEyebrow">Provider Schedule</span>
+          <h1 id="calendarPageTitle">Manage availability and confirm the best time slot in one place.</h1>
+          <p id="calendarPageDescription">This upgraded calendar keeps the existing Resvaspot functionality, while presenting appointments in a clearer provider-style dashboard.</p>
+        </div>
+
+        <div class="calendar-offer-card" id="studentPromoCard">
+          <span class="eyebrow">Weekend Bonus</span>
+          <strong>Get 15% more on weekend bookings</strong>
+          <p>Highlight higher-demand dates and steer users toward premium scheduling windows.</p>
+        </div>
+      </div>
+
+      <div class="calendar-dashboard-layout">
+        <aside class="surface-card calendar-profile-card">
+          <div class="calendar-provider-profile" id="providerProfile">
+            <div class="calendar-provider-avatar" id="providerAvatar">SJ</div>
+            <h2 id="providerName">Sarah Johnson</h2>
+            <p id="providerTitle">Lead Stylist & Beauty Expert</p>
+            <span class="calendar-provider-rating" id="providerRating">4.9 rating from 142 reviews</span>
+          </div>
+
+          <div class="calendar-provider-facts">
+            <div class="split-row">
+              <span>Service Area</span>
+              <strong id="providerLocation">Main Campus Center</strong>
+            </div>
+            <div class="split-row">
+              <span>Experience</span>
+              <strong id="providerExperience">8 Years</strong>
+            </div>
+            <div class="split-row">
+              <span>Response Time</span>
+              <strong id="providerResponse">&lt; 15 mins</strong>
+            </div>
+          </div>
+
+          <div class="calendar-selection-card">
+            <span class="eyebrow">Selection Preview</span>
+            <div class="calendar-selection-row">
+              <span>Selected date</span>
+              <strong id="selectedDateLabel">Select a date</strong>
+            </div>
+            <div class="calendar-selection-row">
+              <span>Preferred time</span>
+              <strong id="selectedTimeLabel">Choose an available slot</strong>
+            </div>
+          </div>
+        </aside>
+
+        <section class="calendar-main-column">
+          <section class="surface-card calendar-panel calendar-panel-rich">
+            <div class="calendar-header calendar-header-rich">
+              <button id="calendarPrevButton" class="calendar-nav-button" type="button" aria-label="Previous month">Prev</button>
+              <div class="calendar-header-copy">
+                <span class="eyebrow">Monthly View</span>
+                <h2 id="calendarMonthLabel">Month Year</h2>
+              </div>
+              <button id="calendarNextButton" class="calendar-nav-button" type="button" aria-label="Next month">Next</button>
+            </div>
+
+            <div class="calendar-weekdays">
+              <span>Sun</span>
+              <span>Mon</span>
+              <span>Tue</span>
+              <span>Wed</span>
+              <span>Thu</span>
+              <span>Fri</span>
+              <span>Sat</span>
+            </div>
+
+            <div id="calendarGrid" class="calendar-grid"></div>
+
+            <div class="calendar-legend calendar-legend-rich">
+              <span><i class="legend-dot selected-dot"></i> Selected</span>
+              <span><i class="legend-dot booked-dot"></i> Booked</span>
+              <span><i class="legend-dot"></i> Available</span>
+            </div>
+          </section>
+
+          <aside class="surface-card calendar-details calendar-details-rich">
+            <div class="calendar-details-head">
+              <div>
+                <span class="eyebrow">Appointment Details</span>
+                <h2 id="calendarDetailsLabel">Schedule overview</h2>
+              </div>
+              <p class="inline-note">Click any day to inspect bookings or view open availability.</p>
+            </div>
+
+            <div id="appointmentDetails" class="appointment-details">
+              <p class="inline-note">Choose a date to see the current booking queue.</p>
+            </div>
+
+            <div class="calendar-actions">
+              <button id="confirmBookingBtn" class="button" type="button">Confirm Booking</button>
+              <a class="button button-secondary" href="bookings.html">View My Bookings</a>
+            </div>
+
+            <div class="calendar-policy-note">
+              <strong>Booking policy</strong>
+              <p>Students and staff receive priority booking windows. Please arrive early for beauty appointments and submit laundry drops before 4 PM.</p>
+            </div>
+          </aside>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script src="../js/auth-core.js"></script>
+  <script>window.rvAuth.requireAuth();</script>
+  <script src="../js/main.js"></script>
+  <script src="../js/calendar.js"></script>
+</body>
+</html>

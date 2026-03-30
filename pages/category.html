@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resvaspot | Category</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/navbar.css">
+  <link rel="stylesheet" href="../css/pages.css">
+  <style>
+    /* –– Hero –– */
+    .cat-hero {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      min-height: 260px;
+      display: flex;
+      align-items: flex-end;
+      padding: 2.25rem 2.5rem;
+      margin-bottom: 2rem;
+      background: var(--primary-gradient);
+    }
+    .cat-hero-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.2;
+    }
+    .cat-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 65%, transparent 100%);
+    }
+    .cat-hero-content { position: relative; z-index: 2; color: #fff; }
+    .cat-hero-content .eyebrow { color: rgba(255,255,255,0.7); }
+    .cat-hero-content h1 {
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin: 0.3rem 0 0.55rem;
+      color: #fff;
+    }
+    .cat-hero-content p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.8);
+      margin: 0 0 1.25rem;
+      max-width: 500px;
+    }
+    .cat-hero-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .cat-hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 100px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    /* –– Breadcrumb –– */
+    .cat-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.875rem;
+      color: var(--text-muted, #64748b);
+      margin-bottom: 1.25rem;
+    }
+    .cat-breadcrumb a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .cat-breadcrumb a:hover { text-decoration: underline; }
+
+    /* –– Controls row –– */
+    .cat-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .cat-controls-left { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+    .cat-section-title { font-size: 1.2rem; font-weight: 700; margin: 0; }
+    .cat-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(var(--primary-rgb), 0.1);
+      color: var(--primary);
+      font-size: 0.72rem;
+      font-weight: 700;
+      border-radius: 100px;
+      padding: 0.18rem 0.6rem;
+    }
+    .cat-sort {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted, #64748b);
+    }
+    .cat-sort select {
+      font-size: 0.82rem;
+      padding: 0.4rem 0.75rem;
+      border: 1.5px solid rgba(0,0,0,0.1);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    /* –– Search bar –– */
+    .cat-search-wrap {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+    .cat-search-wrap svg {
+      position: absolute;
+      left: 0.9rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted, #94a3b8);
+      pointer-events: none;
+    }
+    .cat-search {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0.7rem 1rem 0.7rem 2.5rem;
+      border: 1.5px solid rgba(0,0,0,0.09);
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+      background: var(--surface);
+      color: var(--text);
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .cat-search:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.08);
+    }
+    .cat-search::placeholder { color: var(--text-muted, #94a3b8); }
+
+    /* –– Shop cards grid –– */
+    .shops-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* –– Individual shop card –– */
+    .shop-card {
+      border-radius: var(--radius-md);
+      background: var(--surface);
+      border: 1px solid rgba(0,0,0,0.07);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .shop-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-3px);
+    }
+    .shop-card-photo {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      display: block;
+    }
+    .shop-card-avatar {
+      width: 100%;
+      height: 170px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: #fff;
+      background: var(--primary-gradient);
+      flex-shrink: 0;
+    }
+    .shop-card-body { padding: 1.25rem 1.25rem 0.5rem; flex: 1; display: flex; flex-direction: column; }
+    .shop-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; }
+    .shop-card-name { font-size: 1.05rem; font-weight: 700; margin: 0; color: var(--text); }
+    .shop-card-role { font-size: 0.8rem; color: var(--text-muted, #64748b); margin: 0.15rem 0 0; }
+    .shop-card-rating { display: flex; align-items: center; gap: 0.3rem; flex-shrink: 0; }
+    .shop-card-rating .stars { color: #f59e0b; font-size: 0.78rem; letter-spacing: -0.04em; }
+    .shop-card-rating small { font-size: 0.78rem; font-weight: 700; }
+    .shop-card-bio {
+      font-size: 0.845rem;
+      color: var(--text-muted, #64748b);
+      line-height: 1.55;
+      margin: 0 0 1rem;
+      flex: 1;
+    }
+
+    /* Services listed under each shop */
+    .shop-services-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-muted, #94a3b8);
+      margin: 0 0 0.5rem;
+    }
+    .shop-services-list { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+    .shop-service-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.45rem 0.65rem;
+      border-radius: var(--radius-sm);
+      background: rgba(var(--primary-rgb), 0.045);
+      font-size: 0.82rem;
+      gap: 0.5rem;
+    }
+    .shop-service-row-name { font-weight: 600; color: var(--text); flex: 1; }
+    .shop-service-row-price { font-weight: 700; color: var(--primary); white-space: nowrap; }
+    .shop-service-row-book {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      padding: 0.2rem 0.55rem;
+      border-radius: 100px;
+      border: 1.5px solid var(--primary);
+      white-space: nowrap;
+      transition: background 0.15s, color 0.15s;
+    }
+    .shop-service-row-book:hover { background: var(--primary); color: #fff; }
+    .shop-more-services {
+      font-size: 0.78rem;
+      color: var(--text-muted, #94a3b8);
+      padding: 0.3rem 0;
+      font-style: italic;
+    }
+
+    .shop-card-footer {
+      padding: 0.85rem 1.25rem 1.1rem;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      display: flex;
+      gap: 0.6rem;
+    }
+    .shop-card-footer .button {
+      flex: 1;
+      text-align: center;
+      font-size: 0.83rem;
+      padding: 0.55rem 0.75rem;
+    }
+
+    /* –– Empty state –– */
+    .cat-empty { grid-column: 1 / -1; text-align: center; padding: 5rem 2rem; }
+    .cat-empty-icon { font-size: 3rem; margin-bottom: 1rem; opacity: 0.4; }
+    .cat-empty h3 { font-size: 1.1rem; font-weight: 700; margin: 0 0 0.5rem; }
+    .cat-empty p { font-size: 0.9rem; color: var(--text-muted, #64748b); margin: 0 0 1.5rem; }
+
+    @media (max-width: 600px) {
+      .cat-hero { min-height: 200px; padding: 1.25rem; }
+      .shops-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body data-page="category">
+  <div id="navbar-root"></div>
+
+  <main class="page-shell">
+    <section class="container" style="max-width:1200px; margin:0 auto; padding:2rem 1.5rem;">
+
+      <nav class="cat-breadcrumb" aria-label="Breadcrumb">
+        <a href="services.html">Services</a>
+        <span>—º</span>
+        <span id="bc-category">Category</span>
+      </nav>
+
+      <div class="cat-hero" id="cat-hero">
+        <img class="cat-hero-bg fade-media" id="hero-bg" src="" alt="" loading="eager">
+        <div class="cat-hero-overlay"></div>
+        <div class="cat-hero-content">
+          <span class="eyebrow" id="hero-kicker">Service Category</span>
+          <h1 id="hero-title">Loading—¦</h1>
+          <p id="hero-desc"></p>
+          <div class="cat-hero-pills">
+            <span class="cat-hero-pill">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <span id="hero-count-text">providers</span>
+            </span>
+            <span class="cat-hero-pill">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Same-day booking
+            </span>
+            <span class="cat-hero-pill">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Verified providers
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cat-search-wrap">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input class="cat-search" id="shop-search" type="search" placeholder="Search providers or services—¦" aria-label="Search providers">
+      </div>
+
+      <div class="cat-controls">
+        <div class="cat-controls-left">
+          <h2 class="cat-section-title">Providers offering <span id="cat-name-inline">this service</span></h2>
+          <span class="cat-count" id="shop-count">0</span>
+        </div>
+        <div class="cat-sort">
+          <label for="sort-select">Sort by</label>
+          <select id="sort-select">
+            <option value="rating">Top Rated</option>
+            <option value="name">Name A—“Z</option>
+            <option value="services">Most Services</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="shops-grid" id="shops-grid"></div>
+
+    </section>
+  </main>
+
+  <script src="../js/auth-core.js"></script>
+  <script src="../js/media-library.js"></script>
+  <script src="../js/main.js"></script>
+  <script>
+  (function () {
+
+    const SEED = {
+      Barbering: [
+        {
+          name: "Marcus Cole",
+          role: "Senior Barber · Campus Grooming",
+          rating: 4.9,
+          reviews: 142,
+          bio: "Known for precision fades and efficient slots that fit perfectly between lectures.",
+          img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=80",
+          services: [
+            { name: "Classic Fade", price: "GHS 25" },
+            { name: "Beard Shape & Line-up", price: "GHS 15" },
+            { name: "Full Cut + Beard Combo", price: "GHS 35" },
+          ],
+        },
+        {
+          name: "Ava Reed",
+          role: "Master Barber · On-Campus",
+          rating: 4.9,
+          reviews: 201,
+          bio: "Specialist in skin fades, razor work, and traditional grooming with same-day slots.",
+          img: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&w=500&q=80",
+          services: [
+            { name: "Signature Fade", price: "GHS 40" },
+            { name: "Traditional Shave", price: "GHS 20" },
+            { name: "Quick Line-up", price: "GHS 10" },
+          ],
+        },
+        {
+          name: "Kwame Asante",
+          role: "Campus Barber · Texture Specialist",
+          rating: 4.7,
+          reviews: 89,
+          bio: "Expert in textured cuts and Afro styles. Walk-ins welcome on weekday mornings.",
+          img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80",
+          services: [
+            { name: "Afro Shape-up", price: "GHS 20" },
+            { name: "Texture Cut", price: "GHS 28" },
+          ],
+        },
+      ],
+      Braiding: [
+        {
+          name: "Nia Lawson",
+          role: "Specialist Braider · Protective Styling",
+          rating: 4.8,
+          reviews: 175,
+          bio: "Polished protective styles with clear pre-appointment communication. Known for knotless technique.",
+          img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=500&q=80",
+          services: [
+            { name: "Knotless Box Braids", price: "GHS 80" },
+            { name: "Cornrows", price: "GHS 40" },
+            { name: "Feed-in Braids", price: "GHS 55" },
+          ],
+        },
+        {
+          name: "Adaeze Obi",
+          role: "Natural Hair Stylist · On-Campus",
+          rating: 4.9,
+          reviews: 98,
+          bio: "Expert in all protective styles with a focus on hair health and tension-free installation.",
+          img: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=500&q=80",
+          services: [
+            { name: "Senegalese Twists", price: "GHS 70" },
+            { name: "Loc Retwist", price: "GHS 45" },
+            { name: "Goddess Braids", price: "GHS 90" },
+          ],
+        },
+      ],
+      Laundry: [
+        {
+          name: "Campus Laundry Co.",
+          role: "Full-Service Laundry · Dorm Delivery",
+          rating: 4.6,
+          reviews: 203,
+          bio: "Reliable wash, dry and fold with free dorm delivery for orders over GHS 15.",
+          img: "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?auto=format&fit=crop&w=500&q=80",
+          services: [
+            { name: "Wash & Fold", price: "GHS 1.50/lb" },
+            { name: "Express Same-Day", price: "GHS 3.00/lb" },
+            { name: "Dorm Pickup & Delivery", price: "Free pickup" },
+          ],
+        },
+        {
+          name: "FreshPress",
+          role: "Laundry & Ironing · Student Discount",
+          rating: 4.8,
+          reviews: 77,
+          bio: "Specialist in ironing, pressing, and delicate fabric care. Student discount with valid ID.",
+          img: "https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=500&q=80",
+          services: [
+            { name: "Ironing & Press", price: "GHS 5/item" },
+            { name: "Dry Clean Special", price: "GHS 20+" },
+          ],
+        },
+      ],
+      "Facial Care": [
+        {
+          name: "Jordan Stone",
+          role: "Facial Artist · Skincare",
+          rating: 5.0,
+          reviews: 134,
+          bio: "Calming sessions and event-ready skincare on campus. Specialises in sensitive skin.",
+          img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=500&q=80",
+          services: [
+            { name: "Classic Facial", price: "GHS 45" },
+            { name: "Event Makeup", price: "GHS 80" },
+            { name: "Hydra Glow Boost", price: "GHS 65" },
+          ],
+        },
+        {
+          name: "Amara Diallo",
+          role: "Skincare Specialist · Natural Beauty",
+          rating: 4.9,
+          reviews: 88,
+          bio: "Certified skincare specialist focused on melanin-rich skin treatments and natural routines.",
+          img: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=500&q=80",
+          services: [
+            { name: "Acne Clarity Treatment", price: "GHS 55" },
+            { name: "Brow Shaping", price: "GHS 20" },
+          ],
+        },
+      ],
+    };
+
+    const META = {
+      Barbering: {
+        kicker: "Campus Grooming",
+        title: "Barbering Shops",
+        desc: "Browse all barbers on campus. Each card shows their shop, what they offer, and their prices – book directly without leaving the page.",
+        bg: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1400&q=80",
+        bgAlt: "Barber shop interior",
+        heroStyle: "linear-gradient(135deg, #0f172a, #1e3a5f)",
+      },
+      Braiding: {
+        kicker: "Protective Styling",
+        title: "Braiding",
+        desc: "Find all braiders on campus. See their styles, prices, and availability – then book in seconds.",
+        bg: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=1400&q=80",
+        bgAlt: "Braiding in progress",
+        heroStyle: "linear-gradient(135deg, #2d1b4e, #4c1d95)",
+      },
+      Laundry: {
+        kicker: "Everyday Care",
+        title: "Laundry Shops",
+        desc: "All campus laundry providers in one place. Compare services, pricing, and delivery options.",
+        bg: "https://images.unsplash.com/photo-1521656693074-0ef32e80a5d5?auto=format&fit=crop&w=1400&q=80",
+        bgAlt: "Clean folded laundry",
+        heroStyle: "linear-gradient(135deg, #1a3a2a, #064e3b)",
+      },
+      "Facial Care": {
+        kicker: "Beauty & Skin",
+        title: "Facial Artistry",
+        desc: "Skincare and beauty providers on campus. Browse their treatments and book a slot that works for you.",
+        bg: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1400&q=80",
+        bgAlt: "Skincare products",
+        heroStyle: "linear-gradient(135deg, #4a1530, #831843)",
+      },
+    };
+
+    const params  = new URLSearchParams(window.location.search);
+    const rawCat  = params.get("category") || "";
+    const meta    = META[rawCat];
+    const seedShops = SEED[rawCat] || [];
+
+    /* Pull user-registered providers from localStorage, grouped by provider name */
+    function getUserShops() {
+      const all = JSON.parse(localStorage.getItem("rv_provider_services") || "[]");
+      const forCat = all.filter(s => s.category && s.category.toLowerCase() === rawCat.toLowerCase());
+      const byProvider = {};
+      forCat.forEach(s => {
+        const key = s.provider || "Unknown Provider";
+        if (!byProvider[key]) byProvider[key] = { name: key, services: [] };
+        byProvider[key].services.push({ name: s.name, price: `GHS ${s.price}` });
+      });
+      return Object.values(byProvider).map(p => ({
+        name: p.name,
+        role: `${rawCat} Provider`,
+        rating: null,
+        reviews: 0,
+        bio: `Campus provider offering ${rawCat.toLowerCase()} services on Resvaspot.`,
+        img: null,
+        services: p.services,
+      }));
+    }
+
+    const enrichShop = (shop) => {
+      const visual = window.rvMediaLibrary?.resolveProviderVisual({
+        name: shop.name,
+        category: rawCat,
+        role: shop.role,
+        description: shop.bio,
+      });
+
+      return {
+        ...shop,
+        img: visual?.src || shop.img,
+        imageAlt: visual?.alt || `${shop.role} service visual`,
+      };
+    };
+
+    let allShops = [...seedShops.map(enrichShop), ...getUserShops().map(enrichShop)];
+
+    /* Populate hero & page meta */
+    if (meta) {
+      document.title = `Resvaspot | ${meta.title}`;
+      document.getElementById("bc-category").textContent = meta.title;
+      document.getElementById("hero-kicker").textContent = meta.kicker;
+      document.getElementById("hero-title").textContent = meta.title;
+      document.getElementById("hero-desc").textContent = meta.desc;
+      const bg = document.getElementById("hero-bg");
+      const categoryVisual = window.rvMediaLibrary?.resolveCategoryVisual(rawCat);
+      bg.src = categoryVisual?.src || meta.bg;
+      bg.alt = categoryVisual?.alt || meta.bgAlt;
+      document.getElementById("cat-hero").style.background = meta.heroStyle;
+      document.getElementById("cat-name-inline").textContent = meta.title;
+    } else {
+      document.getElementById("hero-title").textContent = rawCat || "Category";
+      document.getElementById("bc-category").textContent = rawCat || "Category";
+      document.getElementById("cat-name-inline").textContent = rawCat || "this service";
+    }
+
+    const grid     = document.getElementById("shops-grid");
+    const countEl  = document.getElementById("shop-count");
+    const heroCount = document.getElementById("hero-count-text");
+    const syncFadeMedia = (scope = document) => {
+      scope.querySelectorAll(".fade-media").forEach((image) => {
+        if (!(image instanceof HTMLImageElement)) return;
+
+        const markLoaded = () => image.classList.add("is-loaded");
+        if (image.complete) markLoaded();
+        else {
+          image.addEventListener("load", markLoaded, { once: true });
+          image.addEventListener("error", markLoaded, { once: true });
+        }
+      });
+    };
+
+    function renderShops(shops) {
+      countEl.textContent = shops.length;
+      heroCount.textContent = `${allShops.length} provider${allShops.length !== 1 ? "s" : ""}`;
+
+      if (!shops.length) {
+        grid.innerHTML = `
+          <div class="cat-empty">
+            <div class="cat-empty-icon">ðŸ”</div>
+            <h3>No providers found</h3>
+            <p>No providers match your search. Try a different term or check back later.</p>
+            <a class="button" href="services.html">Back to Services</a>
+          </div>`;
+        return;
+      }
+
+      grid.innerHTML = shops.map(shop => {
+        const initials = shop.name.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase();
+        const photoHtml = shop.img
+          ? `<img class="shop-card-photo fade-media" loading="lazy" src="${shop.img}" alt="${shop.imageAlt || `Service visual for ${shop.role}`}">`
+          : `<div class="shop-card-avatar">${initials}</div>`;
+
+        const ratingHtml = shop.rating !== null
+          ? `<div class="shop-card-rating">
+               <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+               <small>${shop.rating}</small>
+             </div>`
+          : `<div class="shop-card-rating"><small style="color:var(--text-muted,#94a3b8)">New</small></div>`;
+
+        const MAX_VISIBLE = 3;
+        const visible = shop.services.slice(0, MAX_VISIBLE);
+        const extra   = shop.services.length - MAX_VISIBLE;
+
+        const serviceRows = visible.map(s => `
+          <div class="shop-service-row">
+            <span class="shop-service-row-name">${s.name}</span>
+            <span class="shop-service-row-price">${s.price}</span>
+            <a class="shop-service-row-book"
+               data-auth-required="true"
+               href="calendar.html?provider=${encodeURIComponent(shop.name)}&service=${encodeURIComponent(s.name)}&category=${encodeURIComponent(rawCat)}">
+              Book
+            </a>
+          </div>`).join("");
+
+        const moreRow = extra > 0
+          ? `<p class="shop-more-services">+${extra} more service${extra > 1 ? "s" : ""} available</p>`
+          : "";
+
+        return `
+          <article class="shop-card">
+            ${photoHtml}
+            <div class="shop-card-body">
+              <div class="shop-card-header">
+                <div>
+                  <h3 class="shop-card-name">${shop.name}</h3>
+                  <p class="shop-card-role">${shop.role}</p>
+                </div>
+                ${ratingHtml}
+              </div>
+              <p class="shop-card-bio">${shop.bio}</p>
+              ${shop.services.length ? `
+                <p class="shop-services-label">Services they offer</p>
+                <div class="shop-services-list">
+                  ${serviceRows}
+                  ${moreRow}
+                </div>` : ""}
+            </div>
+            <div class="shop-card-footer">
+              <a class="button button-sm"
+                 data-auth-required="true"
+                 href="calendar.html?provider=${encodeURIComponent(shop.name)}&category=${encodeURIComponent(rawCat)}">
+                Book Now
+              </a>
+              <a class="button button-sm button-secondary"
+                 data-auth-required="true"
+                 href="chat.html?with=${encodeURIComponent(shop.name)}">
+                Message
+              </a>
+            </div>
+          </article>`;
+      }).join("");
+
+      syncFadeMedia(grid);
+    }
+
+    function sorted(shops, mode) {
+      const c = [...shops];
+      if (mode === "rating")   return c.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+      if (mode === "name")     return c.sort((a, b) => a.name.localeCompare(b.name));
+      if (mode === "services") return c.sort((a, b) => b.services.length - a.services.length);
+      return c;
+    }
+
+    function applyFilters() {
+      const q    = document.getElementById("shop-search").value.trim().toLowerCase();
+      const mode = document.getElementById("sort-select").value;
+      const filtered = allShops.filter(shop => {
+        if (!q) return true;
+        return (
+          shop.name.toLowerCase().includes(q) ||
+          shop.role.toLowerCase().includes(q) ||
+          shop.bio.toLowerCase().includes(q) ||
+          shop.services.some(s => s.name.toLowerCase().includes(q))
+        );
+      });
+      renderShops(sorted(filtered, mode));
+    }
+
+    document.getElementById("shop-search").addEventListener("input", applyFilters);
+    document.getElementById("sort-select").addEventListener("change", applyFilters);
+
+    syncFadeMedia();
+    applyFilters();
+  })();
+  </script>
+</body>
+</html>
